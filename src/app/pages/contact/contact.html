@@ -1,0 +1,195 @@
+<app-page-hero
+  eyebrow="Contact"
+  heading="Contact Us"
+  lede="Tell us the function, the date and roughly how many guests. We will visit the hall and send an itemised quote — no obligation."
+/>
+
+<!-- ── Contact cards ── -->
+<section class="section section--cream">
+  <div class="shell cards">
+    <a class="card info" [href]="'tel:' + business.phones[0].dial" appReveal>
+      <span class="info__icon"><app-icon name="phone" /></span>
+      <h2>Call Us</h2>
+      @for (phone of business.phones; track phone.dial) {
+        <p class="info__strong">{{ phone.label }}</p>
+      }
+      <p class="info__sub">{{ business.hours }}</p>
+    </a>
+
+    <a
+      class="card info"
+      [href]="'https://wa.me/' + business.phones[0].whatsapp"
+      target="_blank"
+      rel="noopener"
+      [appReveal]="80"
+    >
+      <span class="info__icon info__icon--wa"><app-icon name="whatsapp" /></span>
+      <h2>WhatsApp</h2>
+      <p class="info__strong">{{ business.phones[0].label }}</p>
+      <p class="info__sub">Send us your function details and we reply the same day.</p>
+    </a>
+
+    <a class="card info" [href]="mapLink" target="_blank" rel="noopener" [appReveal]="160">
+      <span class="info__icon"><app-icon name="location" /></span>
+      <h2>Visit Us</h2>
+      <p class="info__strong">{{ business.address.line1 }}</p>
+      <p class="info__sub">
+        {{ business.address.city }} - {{ business.address.pincode }}, {{ business.address.state }}
+      </p>
+    </a>
+  </div>
+</section>
+
+<!-- ── Form + map ── -->
+<section class="section section--deep">
+  <div class="shell split">
+    <!-- Enquiry form -->
+    <div class="form-wrap" appReveal>
+      <div class="head head--left">
+        <span class="eyebrow">Enquiry</span>
+        <h2>Send Us Your Function Details</h2>
+        <div class="flourish"><span></span></div>
+        <p>
+          Fill this in and it opens WhatsApp with your details already typed out — just press send.
+        </p>
+      </div>
+
+      @if (sent()) {
+        <div class="sent" role="status">
+          <app-icon name="check" />
+          <div>
+            <strong>WhatsApp is opening with your enquiry.</strong>
+            <span>
+              If it did not open, call us directly on
+              <a [href]="'tel:' + business.phones[0].dial">{{ business.phones[0].label }}</a
+              >.
+            </span>
+          </div>
+        </div>
+      }
+
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="grid-2">
+          <label class="field">
+            <span class="field__label">Your Name <em>*</em></span>
+            <input type="text" formControlName="name" placeholder="e.g. Ramesh Kumar" />
+            @if (invalid('name')) {
+              <span class="field__error">Please enter your name.</span>
+            }
+          </label>
+
+          <label class="field">
+            <span class="field__label">Phone Number <em>*</em></span>
+            <input type="tel" formControlName="phone" placeholder="10-digit mobile number" />
+            @if (invalid('phone')) {
+              <span class="field__error">Please enter a valid phone number.</span>
+            }
+          </label>
+        </div>
+
+        <div class="grid-3">
+          <label class="field">
+            <span class="field__label">Function</span>
+            <select formControlName="eventType">
+              @for (event of events; track event.id) {
+                <option [value]="event.name">{{ event.name }}</option>
+              }
+              <option value="Other function">Other function</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field__label">Date</span>
+            <input type="date" formControlName="date" />
+          </label>
+
+          <label class="field">
+            <span class="field__label">Approx. Guests</span>
+            <input type="number" formControlName="guests" min="1" placeholder="e.g. 300" />
+          </label>
+        </div>
+
+        <fieldset class="field field--group">
+          <legend class="field__label">Services You Need</legend>
+          <div class="checks">
+            @for (service of services; track service.id) {
+              <label class="check" [class.check--on]="isChecked(service.name)">
+                <input
+                  type="checkbox"
+                  [checked]="isChecked(service.name)"
+                  (change)="toggleService(service.name, $any($event.target).checked)"
+                />
+                <app-icon [name]="service.icon" />
+                <span>{{ service.name }}</span>
+              </label>
+            }
+          </div>
+        </fieldset>
+
+        <label class="field">
+          <span class="field__label">Anything Else We Should Know</span>
+          <textarea
+            formControlName="message"
+            rows="4"
+            placeholder="Hall name, muhurtham time, family customs, budget range…"
+          ></textarea>
+        </label>
+
+        <button type="submit" class="btn btn--primary form__submit">
+          <app-icon name="whatsapp" />
+          Send Enquiry on WhatsApp
+        </button>
+
+        <p class="form__note">
+          Prefer to talk? Call
+          <a [href]="'tel:' + business.phones[0].dial">{{ business.phones[0].label }}</a> or
+          <a [href]="'tel:' + business.phones[1].dial">{{ business.phones[1].label }}</a
+          >.
+        </p>
+      </form>
+    </div>
+
+    <!-- Map + address -->
+    <aside class="map-wrap" [appReveal]="120">
+      <div class="map">
+        <iframe
+          [src]="mapEmbed"
+          title="Map showing Kasi Suba Muhurtham on East Raja Street, Kancheepuram"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <div class="map__card">
+        <h3>Kasi Suba Muhurtham</h3>
+        <p class="map__sub">{{ business.subtitle }}</p>
+
+        <p class="map__row">
+          <app-icon name="location" />
+          <span>
+            {{ business.address.line1 }}<br />
+            {{ business.address.city }} - {{ business.address.pincode }}<br />
+            {{ business.address.state }}
+          </span>
+        </p>
+
+        @for (phone of business.phones; track phone.dial) {
+          <a class="map__row map__row--link" [href]="'tel:' + phone.dial">
+            <app-icon name="phone" />
+            <span>{{ phone.label }}</span>
+          </a>
+        }
+
+        <p class="map__row">
+          <app-icon name="clock" />
+          <span>{{ business.hours }}</span>
+        </p>
+
+        <a class="btn btn--primary map__btn" [href]="mapLink" target="_blank" rel="noopener">
+          Get Directions
+          <app-icon name="arrow-right" />
+        </a>
+      </div>
+    </aside>
+  </div>
+</section>

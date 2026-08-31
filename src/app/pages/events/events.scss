@@ -1,0 +1,245 @@
+:host {
+  display: block;
+}
+
+.events {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+}
+
+.ev {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--gold);
+  box-shadow: var(--shadow-sm);
+  scroll-margin-top: calc(var(--header-h) + 60px);
+  background: var(--cream-card);
+}
+
+/* Mirror the track sizes so the panel keeps its width when flipped. */
+.ev--flip {
+  grid-template-columns: 1.05fr 0.95fr;
+}
+
+.ev--flip .ev__panel {
+  order: 2;
+}
+
+/* ----- Coloured panel ----------------------------------------------------- */
+
+.ev__panel {
+  position: relative;
+  padding: clamp(1.85rem, 4vw, 3rem);
+  color: #fff;
+  background: linear-gradient(150deg, var(--rust-deep), var(--rust) 55%, var(--orange));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Soft lattice over the panel, matching the card border. */
+.ev__panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background-image: radial-gradient(circle at 1px 1px, var(--gold-light) 1px, transparent 0);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+.ev__panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ev__icon {
+  width: 66px;
+  height: 66px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  margin-bottom: 1.15rem;
+  color: var(--gold-light);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(229, 193, 104, 0.42);
+}
+
+.ev__icon app-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.ev__panel h2 {
+  color: #fff;
+  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+  margin-bottom: 0.15rem;
+}
+
+.ev__tamil {
+  font-size: 1.15rem;
+  color: var(--gold-light);
+  margin: 0 0 0.85rem;
+}
+
+.ev__desc {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.98rem;
+  max-width: 40ch;
+  margin-bottom: 1.6rem;
+}
+
+.ev__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.ev__actions .btn {
+  padding: 0.68rem 1.2rem;
+  font-size: 0.88rem;
+}
+
+/* ----- Inclusions list ---------------------------------------------------- */
+
+.ev__list {
+  padding: clamp(1.85rem, 4vw, 3rem);
+}
+
+.ev__list-title {
+  margin: 0 0 0.9rem;
+}
+
+.ev__list-title .eyebrow {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+
+.ev__list ul {
+  display: grid;
+  gap: 0.72rem;
+  margin-bottom: 1.5rem;
+}
+
+.ev__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.94rem;
+  color: var(--ink);
+}
+
+.ev__list app-icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  margin-top: 0.16rem;
+  padding: 3px;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, var(--orange), var(--rust));
+}
+
+.ev__note {
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+  border-left: 3px solid var(--gold);
+  background: var(--cream-deep);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* ----- Flower callout ----------------------------------------------------- */
+
+.flowers {
+  text-align: center;
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+.flowers__icon {
+  width: 78px;
+  height: 78px;
+  margin: 0 auto 1.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--rust);
+  background: radial-gradient(circle at 32% 28%, #fff, var(--cream));
+  border: 1.5px solid var(--gold);
+  box-shadow: var(--shadow-sm);
+}
+
+.flowers__icon app-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.flowers h2 {
+  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+}
+
+.flowers p {
+  color: var(--ink-soft);
+  margin-bottom: 1.75rem;
+}
+
+/* ----- Service chips ------------------------------------------------------ */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.chips a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.62rem 1.15rem;
+  border-radius: 999px;
+  background: var(--cream);
+  border: 1px solid var(--gold-pale);
+  color: var(--ink);
+  font-size: 0.9rem;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.chips a app-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--orange);
+  transition: color 0.2s ease;
+}
+
+.chips a:hover {
+  background: linear-gradient(135deg, var(--orange), var(--rust));
+  border-color: transparent;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.chips a:hover app-icon {
+  color: #fff;
+}
+
+/* ----- Responsive --------------------------------------------------------- */
+
+@media (max-width: 880px) {
+  .ev,
+  .ev--flip {
+    grid-template-columns: 1fr;
+  }
+
+  .ev--flip .ev__panel {
+    order: 0;
+  }
+}

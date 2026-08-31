@@ -1,0 +1,86 @@
+<footer class="foot">
+  <div class="foot__motif" aria-hidden="true"></div>
+
+  <div class="shell foot__grid">
+    <!-- Brand -->
+    <div class="foot__col foot__col--brand">
+      <div class="foot__brand">
+        <span class="foot__mark" aria-hidden="true"><app-icon name="ganesha" /></span>
+        <div>
+          <p class="foot__name">Kasi Suba Muhurtham</p>
+          <p class="foot__tag">{{ business.subtitle }}</p>
+        </div>
+      </div>
+      <p class="foot__pitch">{{ business.shortPitch }}</p>
+      <p class="foot__pitch foot__pitch--accent">All flower decorations &amp; arrangements.</p>
+    </div>
+
+    <!-- Quick links -->
+    <div class="foot__col">
+      <h3>Quick Links</h3>
+      <ul class="foot__links">
+        @for (link of quickLinks; track link.path) {
+          <li>
+            <a [routerLink]="link.path">
+              <app-icon name="arrow-right" />
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <!-- Services -->
+    <div class="foot__col">
+      <h3>Our Services</h3>
+      <ul class="foot__links foot__links--plain">
+        @for (service of services; track service.id) {
+          <li>
+            <a [routerLink]="['/services']" [fragment]="service.id">{{ service.name }}</a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="foot__col">
+      <h3>Reach Us</h3>
+
+      <a class="foot__contact" [href]="mapLink" target="_blank" rel="noopener">
+        <app-icon name="location" />
+        <span>
+          {{ business.address.line1 }}<br />
+          {{ business.address.city }} - {{ business.address.pincode }}<br />
+          {{ business.address.state }}
+        </span>
+      </a>
+
+      @for (phone of business.phones; track phone.dial) {
+        <a class="foot__contact" [href]="'tel:' + phone.dial">
+          <app-icon name="phone" />
+          <span>{{ phone.label }}</span>
+        </a>
+      }
+
+      <p class="foot__contact foot__contact--static">
+        <app-icon name="clock" />
+        <span>{{ business.hours }}</span>
+      </p>
+
+      <a
+        class="btn btn--light foot__cta"
+        [href]="'https://wa.me/' + business.phones[0].whatsapp"
+        target="_blank"
+        rel="noopener"
+      >
+        <app-icon name="whatsapp" />
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+
+  <div class="shell foot__bottom">
+    <p>© {{ year }} Kasi Suba Muhurtham, Kancheepuram. All rights reserved.</p>
+    <p class="foot__area">Serving {{ business.serviceArea.join(' · ') }}</p>
+  </div>
+</footer>

@@ -1,0 +1,361 @@
+/* ==========================================================================
+   Kasi Suba Muhurtham — global design system
+   Palette, type scale and shared primitives taken from the printed
+   visiting card: rust red, festival orange, temple gold on warm cream.
+   ========================================================================== */
+
+:root {
+  /* Brand */
+  --rust: #a82d14;
+  --rust-deep: #7d1f0c;
+  --orange: #d9531a;
+  --orange-soft: #e8763a;
+  --gold: #c9992f;
+  --gold-light: #e5c168;
+  --gold-pale: #f0dfae;
+
+  /* Surfaces */
+  --cream: #fdf5e4;
+  --cream-deep: #f8e9cd;
+  --cream-card: #fffaf0;
+  --paper: #ffffff;
+  --brown: #4a2410;
+  --brown-deep: #33180a;
+
+  /* Ink */
+  --ink: #3a2214;
+  --ink-soft: #6b4d3a;
+  --ink-mute: #91735f;
+  --on-dark: #f7ead2;
+  --on-dark-soft: #d8c3a2;
+
+  /* Effects */
+  --shadow-sm: 0 2px 8px rgba(74, 36, 16, 0.08);
+  --shadow: 0 8px 28px rgba(74, 36, 16, 0.12);
+  --shadow-lg: 0 20px 55px rgba(74, 36, 16, 0.18);
+  --ring: 0 0 0 3px rgba(217, 83, 26, 0.28);
+
+  /* Geometry */
+  --radius-sm: 8px;
+  --radius: 16px;
+  --radius-lg: 26px;
+  --shell: 1220px;
+  --gutter: clamp(1.15rem, 4vw, 2.75rem);
+  --section-y: clamp(3.75rem, 8vw, 7rem);
+  --header-h: 76px;
+
+  /* Type */
+  --font-display: 'Playfair Display', 'Georgia', serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-body: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --font-tamil: 'Noto Sans Tamil', 'Latha', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 12px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--rust-deep);
+  line-height: 1.16;
+  margin: 0 0 0.6em;
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: var(--rust);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/*
+ * <app-icon> scales its SVG to 100% of the host, so the host needs a size.
+ * This default keeps icons in step with surrounding text; components override
+ * it wherever a specific size is wanted.
+ */
+app-icon {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ----- Layout primitives -------------------------------------------------- */
+
+.shell {
+  width: min(100% - (var(--gutter) * 2), var(--shell));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+.section--cream {
+  background: var(--cream);
+}
+.section--deep {
+  background: var(--cream-deep);
+}
+.section--paper {
+  background: var(--cream-card);
+}
+
+/* ----- Section heading ---------------------------------------------------- */
+
+.eyebrow {
+  font-family: var(--font-script);
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  color: var(--orange);
+  line-height: 1;
+  margin: 0 0 0.35rem;
+  display: block;
+}
+
+.head {
+  max-width: 44rem;
+  margin-inline: auto;
+  text-align: center;
+  margin-bottom: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.head--left {
+  margin-inline: 0;
+  text-align: left;
+}
+
+.head h2 {
+  font-size: clamp(1.85rem, 4.2vw, 2.9rem);
+  margin-bottom: 0.7rem;
+}
+
+.head p {
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  margin: 0;
+}
+
+/* Small ornamental divider echoing the card's gold flourishes. */
+.flourish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin: 0.85rem 0 1.1rem;
+  color: var(--gold);
+}
+
+.head--left .flourish {
+  justify-content: flex-start;
+}
+
+.flourish::before,
+.flourish::after {
+  content: '';
+  height: 1px;
+  width: clamp(38px, 8vw, 74px);
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.flourish::after {
+  background: linear-gradient(270deg, transparent, var(--gold));
+}
+
+.flourish span {
+  width: 7px;
+  height: 7px;
+  rotate: 45deg;
+  background: var(--gold);
+  flex: none;
+}
+
+/* ----- Buttons ------------------------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.82rem 1.7rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--orange), var(--rust));
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(168, 45, 20, 0.3);
+}
+
+.btn--primary:hover {
+  color: #fff;
+  box-shadow: 0 16px 32px rgba(168, 45, 20, 0.38);
+}
+
+.btn--ghost {
+  border-color: var(--gold);
+  color: var(--rust-deep);
+  background: transparent;
+}
+
+.btn--ghost:hover {
+  background: var(--gold);
+  color: var(--brown-deep);
+}
+
+.btn--light {
+  background: var(--cream);
+  color: var(--rust-deep);
+}
+
+.btn--light:hover {
+  background: #fff;
+  color: var(--rust-deep);
+}
+
+.btn--outline-light {
+  border-color: rgba(247, 234, 210, 0.55);
+  color: var(--on-dark);
+}
+
+.btn--outline-light:hover {
+  background: rgba(247, 234, 210, 0.14);
+  color: #fff;
+}
+
+.btn app-icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+/* ----- Cards -------------------------------------------------------------- */
+
+.card {
+  background: var(--cream-card);
+  border: 1px solid var(--gold-pale);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+  border-color: var(--gold);
+}
+
+/* ----- Decorative background motifs --------------------------------------- */
+
+/* Subtle repeating diamond lattice, like the card's border pattern. */
+.motif-lattice {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: radial-gradient(circle at 1px 1px, rgba(201, 153, 47, 0.35) 1px, transparent 0);
+  background-size: 26px 26px;
+}
+
+.tamil {
+  font-family: var(--font-tamil);
+}
+
+/* ----- Entrance animation ------------------------------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

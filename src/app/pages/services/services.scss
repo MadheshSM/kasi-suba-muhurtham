@@ -1,0 +1,297 @@
+:host {
+  display: block;
+}
+
+/* ----- Jump bar ----------------------------------------------------------- */
+
+.jump {
+  background: var(--brown-deep);
+  border-bottom: 3px solid var(--gold);
+  position: sticky;
+  top: calc(var(--header-h) + 38px);
+  z-index: 30;
+}
+
+.jump__inner {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-block: 0.75rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+}
+
+.jump__inner::-webkit-scrollbar {
+  height: 5px;
+}
+
+.jump__inner::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 99px;
+}
+
+.jump a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+  padding: 0.42rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(229, 193, 104, 0.32);
+  color: var(--on-dark-soft);
+  font-size: 0.82rem;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.jump a:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--brown-deep);
+}
+
+.jump__no {
+  display: grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  flex: none;
+}
+
+/* ----- Detail rows -------------------------------------------------------- */
+
+.rows {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 0.72fr 1.28fr;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: center;
+  scroll-margin-top: calc(var(--header-h) + 110px);
+}
+
+/* Swap the track sizes too, so the art always sits in the narrow column
+   and the copy always gets the wide one. */
+.row--flip {
+  grid-template-columns: 1.28fr 0.72fr;
+}
+
+.row--flip .row__art {
+  order: 2;
+}
+
+/* --- Decorative glyph panel --- */
+
+.row__art {
+  position: relative;
+  aspect-ratio: 1.05;
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.85), transparent 55%),
+    linear-gradient(150deg, var(--cream-deep), #f3d9ad);
+  border: 1px solid var(--gold);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Concentric rings behind the glyph, like a temple mandala. */
+.row__art::before,
+.row__art::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(201, 153, 47, 0.5);
+}
+
+.row__art::before {
+  inset: 12%;
+}
+
+.row__art::after {
+  inset: 24%;
+  border-style: solid;
+  border-color: rgba(201, 153, 47, 0.35);
+}
+
+.row__glyph {
+  position: relative;
+  width: 42%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--rust);
+  background: radial-gradient(circle at 35% 28%, #fff, var(--cream));
+  box-shadow: 0 14px 34px rgba(122, 60, 25, 0.18);
+}
+
+.row__glyph app-icon {
+  width: 52%;
+  height: 52%;
+}
+
+.row__no {
+  position: absolute;
+  right: 1.1rem;
+  bottom: 0.2rem;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 800;
+  color: var(--rust);
+  opacity: 0.13;
+  line-height: 1;
+}
+
+/* --- Copy --- */
+
+.row__tagline {
+  font-family: var(--font-script);
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+  color: var(--orange);
+  line-height: 1;
+  margin: 0 0 0.35rem;
+}
+
+.row h2 {
+  font-size: clamp(1.45rem, 3.4vw, 2.1rem);
+  margin-bottom: 0.7rem;
+}
+
+.row__text {
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.row__points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.6rem 1.25rem;
+  margin: 1.35rem 0 1.75rem;
+}
+
+.row__points li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+}
+
+.row__points app-icon {
+  width: 19px;
+  height: 19px;
+  flex: none;
+  padding: 3px;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, var(--orange), var(--rust));
+}
+
+.row__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.row__call {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  color: var(--rust-deep);
+}
+
+.row__call app-icon {
+  width: 17px;
+  height: 17px;
+  color: var(--orange);
+}
+
+/* ----- Combined package callout ------------------------------------------- */
+
+.combo {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  border-radius: var(--radius-lg);
+  background: var(--cream-card);
+  border: 1px solid var(--gold);
+  box-shadow: var(--shadow);
+}
+
+.combo__icon {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  color: #fff;
+  background: linear-gradient(140deg, var(--orange), var(--rust));
+  box-shadow: 0 12px 26px rgba(168, 45, 20, 0.28);
+}
+
+.combo__icon app-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.combo h2 {
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+}
+
+.combo p {
+  color: var(--ink-soft);
+  max-width: 70ch;
+  margin-bottom: 1.5rem;
+}
+
+/* ----- Responsive --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .jump {
+    top: var(--header-h);
+  }
+
+  .row,
+  .row--flip {
+    grid-template-columns: 1fr;
+  }
+
+  .row--flip .row__art {
+    order: 0;
+  }
+
+  .row__art {
+    aspect-ratio: 1.9;
+    max-height: 220px;
+  }
+
+  .row__glyph {
+    width: auto;
+    height: 74%;
+  }
+}
+
+@media (max-width: 620px) {
+  .jump {
+    display: none;
+  }
+
+  .combo {
+    flex-direction: column;
+  }
+}

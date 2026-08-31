@@ -1,0 +1,89 @@
+<app-page-hero
+  eyebrow="Services"
+  heading="Our Services"
+  lede="The eleven arrangements we handle for weddings and family functions in Kancheepuram — book them together or pick only what you need."
+/>
+
+<!-- Jump navigation -->
+<nav class="jump" aria-label="Jump to a service">
+  <div class="shell jump__inner">
+    @for (service of services; track service.id) {
+      <a [routerLink]="['/services']" [fragment]="service.id">
+        <span class="jump__no">{{ service.no }}</span>
+        {{ service.name }}
+      </a>
+    }
+  </div>
+</nav>
+
+<!-- Alternating detail rows -->
+<section class="section section--cream">
+  <div class="shell rows">
+    @for (service of services; track service.id; let i = $index; let odd = $odd) {
+      <article class="row" [class.row--flip]="odd" [id]="service.id" [appReveal]="0">
+        <div class="row__art" aria-hidden="true">
+          <div class="row__glyph">
+            <app-icon [name]="service.icon" />
+          </div>
+          <span class="row__no">{{ service.no.toString().padStart(2, '0') }}</span>
+        </div>
+
+        <div class="row__body">
+          <p class="row__tagline">{{ service.tagline }}</p>
+          <h2>{{ service.name }}</h2>
+          <p class="row__text">{{ service.description }}</p>
+
+          <ul class="row__points">
+            @for (point of service.highlights; track point) {
+              <li>
+                <app-icon name="check" />
+                {{ point }}
+              </li>
+            }
+          </ul>
+
+          <div class="row__actions">
+            <a
+              class="btn btn--primary"
+              [href]="
+                'https://wa.me/' +
+                business.phones[0].whatsapp +
+                '?text=' +
+                encodeEnquiry(service.name)
+              "
+              target="_blank"
+              rel="noopener"
+            >
+              <app-icon name="whatsapp" />
+              Ask about this
+            </a>
+            <a class="row__call" [href]="'tel:' + business.phones[0].dial">
+              <app-icon name="phone" />
+              {{ business.phones[0].label }}
+            </a>
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>
+
+<!-- Combined package note -->
+<section class="section section--deep">
+  <div class="shell combo" appReveal>
+    <div class="combo__icon"><app-icon name="single-point" /></div>
+    <div>
+      <h2>Take Them Together and We Coordinate the Lot</h2>
+      <p>
+        Most families book catering, decoration, melam and photography as one package. When you do,
+        we build a single schedule around your muhurtham time, so the stage is ready before the
+        makeup is done and the food is hot when the guests sit down. One quote, one team, one number
+        to call.
+      </p>
+      <a routerLink="/contact" class="btn btn--primary">
+        Get an Itemised Quote
+        <app-icon name="arrow-right" />
+      </a>
+    </div>
+  </div>
+</section>

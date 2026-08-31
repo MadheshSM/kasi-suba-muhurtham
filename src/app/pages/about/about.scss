@@ -1,0 +1,295 @@
+:host {
+  display: block;
+}
+
+/* ----- Story -------------------------------------------------------------- */
+
+.story {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.story__copy p {
+  color: var(--ink-soft);
+}
+
+.story__side {
+  display: grid;
+  gap: 1.5rem;
+  position: sticky;
+  top: calc(var(--header-h) + 60px);
+}
+
+.card-art {
+  margin: 0;
+  padding: 10px;
+  border-radius: var(--radius);
+  background: var(--cream-card);
+  border: 1px solid var(--gold);
+  box-shadow: var(--shadow);
+}
+
+.card-art img {
+  border-radius: calc(var(--radius) - 8px);
+  width: 100%;
+  height: auto;
+}
+
+.card-art figcaption {
+  text-align: center;
+  font-family: var(--font-script);
+  font-size: 1.35rem;
+  color: var(--orange);
+  padding-top: 0.55rem;
+  line-height: 1;
+}
+
+.story__box {
+  padding: 1.4rem 1.5rem;
+  border-radius: var(--radius);
+  background: linear-gradient(150deg, var(--brown-deep), var(--brown));
+  color: var(--on-dark-soft);
+  border: 1px solid var(--gold);
+}
+
+.story__box h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gold-light);
+  font-size: 1.05rem;
+  margin-bottom: 0.7rem;
+}
+
+.story__box h3 app-icon {
+  width: 19px;
+  height: 19px;
+  color: var(--orange-soft);
+}
+
+.story__box p {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin-bottom: 0.9rem;
+}
+
+.story__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--gold-light);
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.story__link app-icon {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.2s ease;
+}
+
+.story__link:hover app-icon {
+  transform: translateX(4px);
+}
+
+/* ----- Why grid ----------------------------------------------------------- */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.1rem, 2.4vw, 1.75rem);
+}
+
+.why {
+  padding: clamp(1.5rem, 3vw, 2rem);
+}
+
+.why__icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  color: var(--rust);
+  background: linear-gradient(140deg, var(--cream-deep), #fff);
+  border: 1px solid var(--gold-pale);
+}
+
+.why__icon app-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.why h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.45rem;
+}
+
+.why p {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ----- Promise ------------------------------------------------------------ */
+
+.promise {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(140deg, var(--rust-deep), var(--rust) 50%, var(--orange));
+  color: #fff;
+}
+
+.promise__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.promise__eyebrow {
+  color: var(--gold-light);
+}
+
+.promise h2 {
+  color: #fff;
+  font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+}
+
+.promise__lede {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 42ch;
+  margin: 0;
+}
+
+.promise__list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.promise__list li {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.11);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.96rem;
+  backdrop-filter: blur(4px);
+}
+
+.promise__no {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--brown-deep);
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+/* ----- Timeline ----------------------------------------------------------- */
+
+.timeline {
+  display: grid;
+  gap: 0;
+  max-width: 46rem;
+  margin-inline: auto;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline li {
+  position: relative;
+  display: flex;
+  gap: 1.4rem;
+  padding-bottom: 2rem;
+}
+
+/* Vertical rule connecting the steps. */
+.timeline li:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 25px;
+  top: 54px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold), rgba(201, 153, 47, 0.15));
+}
+
+.timeline__no {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(140deg, var(--orange), var(--rust));
+  box-shadow: 0 8px 20px rgba(168, 45, 20, 0.28);
+}
+
+.timeline h3 {
+  font-size: 1.12rem;
+  margin-bottom: 0.35rem;
+  padding-top: 0.7rem;
+}
+
+.timeline p {
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  margin: 0;
+}
+
+/* ----- Service area ------------------------------------------------------- */
+
+.area__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.area__list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  background: var(--cream-card);
+  border: 1px solid var(--gold-pale);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.area__list app-icon {
+  width: 17px;
+  height: 17px;
+  color: var(--orange);
+}
+
+/* ----- Responsive --------------------------------------------------------- */
+
+@media (max-width: 940px) {
+  .story,
+  .promise__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .story__side {
+    position: static;
+    max-width: 520px;
+    margin-inline: auto;
+    width: 100%;
+  }
+}

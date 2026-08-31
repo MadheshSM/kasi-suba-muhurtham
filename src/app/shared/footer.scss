@@ -1,0 +1,214 @@
+.foot {
+  position: relative;
+  background: linear-gradient(160deg, var(--brown-deep), var(--brown) 55%, #5c2c12);
+  color: var(--on-dark-soft);
+  padding-top: clamp(3rem, 6vw, 4.5rem);
+  overflow: hidden;
+}
+
+/* Thin gold rule + diamond lattice, echoing the card border. */
+.foot::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--orange), var(--gold), var(--orange));
+}
+
+.foot__motif {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image: radial-gradient(circle at 1px 1px, var(--gold-light) 1px, transparent 0);
+  background-size: 22px 22px;
+  pointer-events: none;
+}
+
+.foot__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1.25fr 1.25fr;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  padding-bottom: clamp(2.25rem, 5vw, 3.25rem);
+}
+
+.foot h3 {
+  color: var(--gold-light);
+  font-size: 1.06rem;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(229, 193, 104, 0.24);
+}
+
+/* ----- Brand column ------------------------------------------------------- */
+
+.foot__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.1rem;
+}
+
+.foot__mark {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  color: var(--gold-light);
+  background: rgba(229, 193, 104, 0.08);
+}
+
+.foot__mark app-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.foot__name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--gold-light);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.foot__tag {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--on-dark-soft);
+  opacity: 0.8;
+}
+
+.foot__pitch {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  max-width: 34ch;
+}
+
+.foot__pitch--accent {
+  color: var(--gold-light);
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+/* ----- Link lists --------------------------------------------------------- */
+
+.foot__links li + li {
+  margin-top: 0.6rem;
+}
+
+.foot__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--on-dark-soft);
+  font-size: 0.92rem;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.foot__links a app-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--orange-soft);
+  flex: none;
+}
+
+.foot__links a:hover {
+  color: var(--gold-light);
+  transform: translateX(3px);
+}
+
+.foot__links--plain li + li {
+  margin-top: 0.5rem;
+}
+
+.foot__links--plain a {
+  font-size: 0.88rem;
+}
+
+/* ----- Contact column ----------------------------------------------------- */
+
+.foot__contact {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  color: var(--on-dark-soft);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.foot__contact app-icon {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  margin-top: 0.22rem;
+  color: var(--orange-soft);
+}
+
+a.foot__contact:hover {
+  color: var(--gold-light);
+}
+
+.foot__contact--static {
+  cursor: default;
+}
+
+.foot__cta {
+  margin-top: 0.4rem;
+  padding: 0.7rem 1.35rem;
+  font-size: 0.9rem;
+}
+
+/* ----- Bottom bar --------------------------------------------------------- */
+
+.foot__bottom {
+  position: relative;
+  border-top: 1px solid rgba(229, 193, 104, 0.2);
+  padding-block: 1.35rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.83rem;
+}
+
+.foot__bottom p {
+  margin: 0;
+}
+
+.foot__area {
+  color: var(--on-dark-soft);
+  opacity: 0.75;
+}
+
+/* ----- Responsive --------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  .foot__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .foot__col--brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 620px) {
+  .foot__grid {
+    grid-template-columns: 1fr;
+  }
+  .foot__bottom {
+    justify-content: center;
+    text-align: center;
+  }
+}

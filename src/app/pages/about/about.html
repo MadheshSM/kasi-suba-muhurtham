@@ -1,0 +1,158 @@
+<app-page-hero
+  eyebrow="About Us"
+  heading="About Us"
+  lede="An A to Z event management business on East Raja Street, Kancheepuram."
+/>
+
+<!-- ── Story ── -->
+<section class="section section--cream">
+  <div class="shell story">
+    <div class="story__copy" appReveal>
+      <div class="head head--left">
+        <span class="eyebrow">Our Story</span>
+        <h2>One Team, With Standards Borrowed From the Old</h2>
+        <div class="flourish"><span></span></div>
+      </div>
+
+      <p>
+        <strong>Kasi Suba Muhurtham</strong> was started to solve a problem every family in
+        Kancheepuram knows well: arranging a wedding means dealing with a dozen separate people. The
+        cook, the melam party, the flower shop, the photographer, the van driver, the person who
+        brings the pooja items — all of them coordinated by an uncle who should be enjoying the
+        function instead.
+      </p>
+      <p>
+        We took the eleven arrangements that matter most and put them under one roof. You give us
+        the date, the function and the guest count. We handle catering, nadaswaram and melam,
+        flower, balloon and stage decoration, photo and video, bridal and groom preparation, ritual
+        arrangements, DJ and music, seer and gifts, transport, fireworks and welcome counters.
+      </p>
+      <p>
+        What we can promise is the thing larger outfits struggle with — that the person who quoted
+        your function is the same person who picks up the phone at 6 AM on the morning of the
+        muhurtham.
+      </p>
+
+      <a routerLink="/contact" class="btn btn--primary">
+        Talk to Us
+        <app-icon name="arrow-right" />
+      </a>
+    </div>
+
+    <aside class="story__side" [appReveal]="120">
+      <figure class="card-art">
+        <img
+          src="images/brand-card-en.png"
+          alt="Kasi Suba Muhurtham services card listing all eleven services and contact details"
+          loading="lazy"
+        />
+        <figcaption>Our services at a glance</figcaption>
+      </figure>
+
+      <div class="story__box">
+        <h3><app-icon name="location" /> Where to Find Us</h3>
+        <p>
+          {{ business.address.line1 }}<br />
+          {{ business.address.city }} - {{ business.address.pincode }}<br />
+          {{ business.address.state }}
+        </p>
+        <a [href]="mapLink" target="_blank" rel="noopener" class="story__link">
+          Open in Google Maps
+          <app-icon name="arrow-right" />
+        </a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ── Why us ── -->
+<section class="section section--deep">
+  <div class="shell">
+    <div class="head">
+      <span class="eyebrow">Why Choose Us</span>
+      <h2>What a Smaller Team Does Better</h2>
+      <div class="flourish"><span></span></div>
+    </div>
+
+    <div class="why-grid">
+      @for (item of whyUs; track item.title; let i = $index) {
+        <article class="why card" [appReveal]="i * 70">
+          <span class="why__icon"><app-icon [name]="item.icon" /></span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── Promise ── -->
+<section class="section promise">
+  <div class="motif-lattice" aria-hidden="true"></div>
+  <div class="shell promise__inner">
+    <div class="promise__copy" appReveal>
+      <span class="eyebrow promise__eyebrow">Our Promise</span>
+      <h2>Five Things We Commit To</h2>
+      <p class="promise__lede">
+        Our word is the only thing worth trading on. These are the terms we hold ourselves to on
+        every function we take.
+      </p>
+    </div>
+
+    <ul class="promise__list" [appReveal]="120">
+      @for (item of promises; track item; let i = $index) {
+        <li>
+          <span class="promise__no">{{ i + 1 }}</span>
+          {{ item }}
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- ── Process ── -->
+<section class="section section--paper">
+  <div class="shell">
+    <div class="head">
+      <span class="eyebrow">How We Work</span>
+      <h2>From First Call to Final Leaf</h2>
+      <div class="flourish"><span></span></div>
+    </div>
+
+    <ol class="timeline">
+      @for (item of process; track item.step; let i = $index) {
+        <li [appReveal]="i * 90">
+          <span class="timeline__no">{{ item.step }}</span>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- ── Service area ── -->
+<section class="section section--cream">
+  <div class="shell area" appReveal>
+    <div class="head">
+      <span class="eyebrow">Where We Work</span>
+      <h2>Kancheepuram and Around</h2>
+      <div class="flourish"><span></span></div>
+      <p>
+        We are based in Kancheepuram town and travel out for functions in the surrounding taluks.
+        Further afield is possible — ask us and we will tell you honestly whether we can do it well.
+      </p>
+    </div>
+
+    <ul class="area__list">
+      @for (place of business.serviceArea; track place) {
+        <li>
+          <app-icon name="location" />
+          {{ place }}
+        </li>
+      }
+    </ul>
+  </div>
+</section>

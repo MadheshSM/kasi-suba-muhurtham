@@ -1,0 +1,98 @@
+<app-page-hero
+  eyebrow="Event Services"
+  heading="Events We Handle"
+  lede="Wedding, engagement, reception, seemantham, house warming, birthday and office events — arranged completely, along with all flower and balloon decorations."
+/>
+
+<section class="section section--cream">
+  <div class="shell events">
+    @for (event of events; track event.id; let odd = $odd) {
+      <article class="ev" [class.ev--flip]="odd" [id]="event.id" [appReveal]="0">
+        <!-- Panel -->
+        <div class="ev__panel">
+          <span class="ev__icon" aria-hidden="true"><app-icon [name]="event.icon" /></span>
+          <h2>{{ event.name }}</h2>
+          <p class="ev__tamil tamil">{{ event.tamil }}</p>
+          <p class="ev__desc">{{ event.description }}</p>
+
+          <div class="ev__actions">
+            <a
+              class="btn btn--light"
+              [href]="
+                'https://wa.me/' + business.phones[0].whatsapp + '?text=' + encodeEnquiry(event.name)
+              "
+              target="_blank"
+              rel="noopener"
+            >
+              <app-icon name="whatsapp" />
+              Enquire on WhatsApp
+            </a>
+            <a class="btn btn--outline-light" [href]="'tel:' + business.phones[0].dial">
+              <app-icon name="phone" />
+              {{ business.phones[0].label }}
+            </a>
+          </div>
+        </div>
+
+        <!-- Inclusions -->
+        <div class="ev__list">
+          <p class="ev__list-title">
+            <span class="eyebrow">Typically Includes</span>
+          </p>
+          <ul>
+            @for (item of event.inclusions; track item) {
+              <li>
+                <app-icon name="check" />
+                {{ item }}
+              </li>
+            }
+          </ul>
+          <p class="ev__note">
+            Every family runs these functions a little differently. Tell us your customs and we
+            adjust the list — nothing here is fixed.
+          </p>
+        </div>
+      </article>
+    }
+  </div>
+</section>
+
+<!-- Flower decoration callout -->
+<section class="section section--deep">
+  <div class="shell flowers" appReveal>
+    <div class="flowers__icon"><app-icon name="flower" /></div>
+    <h2>All Flower &amp; Balloon Decorations</h2>
+    <p>
+      Beyond the functions above, we take on standalone flower and balloon work — temple functions,
+      birthdays, shop openings, office annual days, ear-piercing ceremonies and any gathering that
+      needs a stage, a balloon arch or a decorated car.
+    </p>
+    <a routerLink="/contact" class="btn btn--primary">
+      Tell Us What You Need
+      <app-icon name="arrow-right" />
+    </a>
+  </div>
+</section>
+
+<!-- Services cross-link -->
+<section class="section section--paper">
+  <div class="shell">
+    <div class="head">
+      <span class="eyebrow">Mix and Match</span>
+      <h2>Build the Function From Our 11 Services</h2>
+      <div class="flourish"><span></span></div>
+      <p>Book the full package, or just the pieces you have not arranged yet.</p>
+    </div>
+
+    <ul class="chips">
+      @for (service of services; track service.id; let i = $index) {
+        <li [appReveal]="i * 40">
+          <a [routerLink]="['/services']" [fragment]="service.id">
+            <app-icon [name]="service.icon" />
+            {{ service.name }}
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

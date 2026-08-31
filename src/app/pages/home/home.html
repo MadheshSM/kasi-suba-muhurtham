@@ -1,0 +1,299 @@
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="motif-lattice" aria-hidden="true"></div>
+
+  <div class="shell hero__inner">
+    <div class="hero__copy">
+      @for (slide of slides; track slide.title; let i = $index) {
+        <div class="slide" [class.slide--on]="current() === i" [attr.aria-hidden]="current() !== i">
+          <span class="eyebrow">{{ slide.eyebrow }}</span>
+          <h1>
+            {{ slide.title }}<br />
+            <span class="hero__accent">{{ slide.accent }}</span>
+          </h1>
+          <p class="hero__text">{{ slide.text }}</p>
+        </div>
+      }
+
+      <div class="hero__actions">
+        <a routerLink="/contact" class="btn btn--primary">
+          Enquire Now
+          <app-icon name="arrow-right" />
+        </a>
+        <a routerLink="/services" class="btn btn--ghost">View Our Services</a>
+      </div>
+
+      <div class="hero__dots" role="tablist" aria-label="Highlights">
+        @for (slide of slides; track slide.title; let i = $index) {
+          <button
+            type="button"
+            role="tab"
+            [class.is-on]="current() === i"
+            [attr.aria-selected]="current() === i"
+            [attr.aria-label]="slide.eyebrow"
+            (click)="goTo(i)"
+          ></button>
+        }
+      </div>
+    </div>
+
+    <!-- Ornamental medallion, drawn from the card's Ganesha crest -->
+    <div class="hero__crest" aria-hidden="true">
+      <div class="crest">
+        <div class="crest__ring crest__ring--outer"></div>
+        <div class="crest__ring crest__ring--inner"></div>
+        <div class="crest__core">
+          <app-icon name="ganesha" />
+          <p class="crest__script">Suba</p>
+          <p class="crest__word">Muhurtham</p>
+        </div>
+      </div>
+      <div class="crest__badge">
+        <strong>11</strong>
+        <span>Services<br />Under One Roof</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ QUICK FACTS ══════════════════════════ -->
+<section class="facts">
+  <div class="shell facts__grid">
+    <div class="fact" appReveal>
+      <app-icon name="single-point" />
+      <div>
+        <strong>11 Services</strong>
+        <span>Every arrangement from one team</span>
+      </div>
+    </div>
+    <div class="fact" [appReveal]="80">
+      <app-icon name="wedding" />
+      <div>
+        <strong>7 Function Types</strong>
+        <span>Wedding to office events</span>
+      </div>
+    </div>
+    <div class="fact" [appReveal]="160">
+      <app-icon name="location" />
+      <div>
+        <strong>Kancheepuram Based</strong>
+        <span>69-A East Raja Street</span>
+      </div>
+    </div>
+    <div class="fact" [appReveal]="240">
+      <app-icon name="phone" />
+      <div>
+        <strong>Direct Contact</strong>
+        <span>Speak to the owner, any day</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ ABOUT ══════════════════════════ -->
+<section class="section section--cream">
+  <div class="shell about">
+    <div class="about__art" appReveal aria-hidden="true">
+      <div class="about__frame">
+        <div class="about__photo"></div>
+      </div>
+      <div class="about__stamp">
+        <span class="about__stamp-script">One Team</span>
+        <strong>A to Z</strong>
+        <span>Kancheepuram</span>
+      </div>
+    </div>
+
+    <div class="about__copy" [appReveal]="120">
+      <div class="head head--left">
+        <span class="eyebrow">About Us</span>
+        <h2>One Team, Built on the Oldest Traditions</h2>
+        <div class="flourish"><span></span></div>
+      </div>
+
+      <p>
+        <strong>Kasi Suba Muhurtham</strong> is an A to Z event management business on East Raja
+        Street, Kancheepuram. We arrange traditional weddings and family functions from start
+        to finish — catering, nadaswaram and melam, flower and stage decoration, photography, seer
+        arrangements, transport and every ritual item in between.
+      </p>
+      <p>
+        We do not spread ourselves thin. We take on a limited number of functions at a time, which
+        is exactly why your family gets a proper site visit, a written quote and someone who
+        actually answers the phone on the morning of the muhurtham.
+      </p>
+
+      <ul class="about__list">
+        <li><app-icon name="check" /> One point of contact for all eleven services</li>
+        <li><app-icon name="check" /> Itemised written quote before you commit</li>
+        <li><app-icon name="check" /> Local team that knows Kancheepuram halls and customs</li>
+        <li><app-icon name="check" /> Every task scheduled around your muhurtham time</li>
+      </ul>
+
+      <a routerLink="/about" class="btn btn--primary">
+        More About Us
+        <app-icon name="arrow-right" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ SERVICES ══════════════════════════ -->
+<section class="section section--deep">
+  <div class="shell">
+    <div class="head">
+      <span class="eyebrow">Services</span>
+      <h2>Everything Your Function Needs</h2>
+      <div class="flourish"><span></span></div>
+      <p>
+        Eleven services, arranged and coordinated by a single team — so you are not chasing eleven
+        different vendors in the week before the wedding.
+      </p>
+    </div>
+
+    <div class="svc-grid">
+      @for (service of featured; track service.id; let i = $index) {
+        <a
+          class="card svc"
+          [routerLink]="['/services']"
+          [fragment]="service.id"
+          [appReveal]="i * 70"
+        >
+          <span class="svc__no">{{ service.no.toString().padStart(2, '0') }}</span>
+          <span class="svc__icon"><app-icon [name]="service.icon" /></span>
+          <h3>{{ service.name }}</h3>
+          <p class="svc__tagline">{{ service.tagline }}</p>
+          <p class="svc__text">{{ service.description }}</p>
+          <span class="svc__more">Read more <app-icon name="arrow-right" /></span>
+        </a>
+      }
+    </div>
+
+    <div class="svc-rest" [appReveal]="120">
+      <p class="svc-rest__label">Also arranged</p>
+      <ul>
+        @for (service of services.slice(6); track service.id) {
+          <li>
+            <a [routerLink]="['/services']" [fragment]="service.id">
+              <app-icon [name]="service.icon" />
+              {{ service.name }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="center">
+      <a routerLink="/services" class="btn btn--primary">
+        View All 11 Services
+        <app-icon name="arrow-right" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ EVENT TYPES ══════════════════════════ -->
+<section class="section section--cream">
+  <div class="shell">
+    <div class="head">
+      <span class="eyebrow">Event Services</span>
+      <h2>Functions We Handle</h2>
+      <div class="flourish"><span></span></div>
+      <p>
+        Wedding, engagement, reception, seemantham, house warming, birthday and office events —
+        plus all flower and balloon decorations.
+      </p>
+    </div>
+
+    <div class="ev-grid">
+      @for (event of events; track event.id; let i = $index) {
+        <a class="ev" [routerLink]="['/events']" [fragment]="event.id" [appReveal]="i * 70">
+          <span class="ev__icon"><app-icon [name]="event.icon" /></span>
+          <h3>{{ event.name }}</h3>
+          <p class="ev__tamil tamil">{{ event.tamil }}</p>
+          <p class="ev__text">{{ event.description }}</p>
+        </a>
+      }
+    </div>
+
+    <p class="ev-note" [appReveal]="120">
+      <app-icon name="flower" />
+      All flower &amp; balloon decorations undertaken.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════ WHY US ══════════════════════════ -->
+<section class="section why">
+  <div class="motif-lattice" aria-hidden="true"></div>
+  <div class="shell">
+    <div class="head">
+      <span class="eyebrow">Why Choose Us</span>
+      <h2 class="why__title">What You Get With a Smaller Team</h2>
+      <div class="flourish"><span></span></div>
+      <p class="why__lede">
+        We would rather earn a name than trade on one. Here is what that means in practice.
+      </p>
+    </div>
+
+    <div class="why__grid">
+      @for (item of whyUs; track item.title; let i = $index) {
+        <article class="why__card" [appReveal]="i * 70">
+          <span class="why__icon"><app-icon [name]="item.icon" /></span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ PROCESS ══════════════════════════ -->
+<section class="section section--paper">
+  <div class="shell">
+    <div class="head">
+      <span class="eyebrow">How It Works</span>
+      <h2>Four Steps From Enquiry to Function</h2>
+      <div class="flourish"><span></span></div>
+    </div>
+
+    <ol class="steps">
+      @for (item of process; track item.step; let i = $index) {
+        <li class="step" [appReveal]="i * 90">
+          <span class="step__no">{{ item.step }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CTA ══════════════════════════ -->
+<section class="cta">
+  <div class="motif-lattice" aria-hidden="true"></div>
+  <div class="shell cta__inner">
+    <div class="cta__copy">
+      <span class="eyebrow cta__eyebrow">Suba Muhurtham</span>
+      <h2>Have a Date in Mind? Let's Plan It.</h2>
+      <p>
+        Tell us the function, the date and roughly how many guests. We will visit the hall and send
+        you an itemised quote — no obligation.
+      </p>
+    </div>
+
+    <div class="cta__actions">
+      @for (phone of business.phones; track phone.dial) {
+        <a class="cta__phone" [href]="'tel:' + phone.dial">
+          <app-icon name="phone" />
+          {{ phone.label }}
+        </a>
+      }
+      <a routerLink="/contact" class="btn btn--light">
+        Send an Enquiry
+        <app-icon name="arrow-right" />
+      </a>
+    </div>
+  </div>
+</section>

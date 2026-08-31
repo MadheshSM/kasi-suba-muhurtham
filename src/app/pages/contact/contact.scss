@@ -1,0 +1,351 @@
+:host {
+  display: block;
+}
+
+/* ----- Info cards --------------------------------------------------------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+  gap: clamp(1.1rem, 2.4vw, 1.75rem);
+}
+
+.info {
+  padding: clamp(1.6rem, 3vw, 2.1rem);
+  text-align: center;
+  color: inherit;
+}
+
+.info__icon {
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 1.1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(140deg, var(--orange), var(--rust));
+  box-shadow: 0 10px 24px rgba(168, 45, 20, 0.26);
+}
+
+.info__icon--wa {
+  background: linear-gradient(140deg, #3ddc7f, #1fa855);
+  box-shadow: 0 10px 24px rgba(31, 168, 85, 0.28);
+}
+
+.info__icon app-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.info h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.info__strong {
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--ink);
+  margin: 0 0 0.15rem;
+}
+
+.info__sub {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin: 0.4rem 0 0;
+}
+
+/* ----- Split layout ------------------------------------------------------- */
+
+.split {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: start;
+}
+
+/* ----- Form --------------------------------------------------------------- */
+
+.form-wrap {
+  padding: clamp(1.6rem, 3.5vw, 2.75rem);
+  border-radius: var(--radius-lg);
+  background: var(--cream-card);
+  border: 1px solid var(--gold);
+  box-shadow: var(--shadow);
+}
+
+.form-wrap .head {
+  margin-bottom: 1.75rem;
+}
+
+.grid-2,
+.grid-3 {
+  display: grid;
+  gap: 1rem 1.25rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1.15rem;
+  min-width: 0;
+}
+
+.field--group {
+  border: 0;
+  padding: 0;
+  margin-inline: 0;
+}
+
+.field__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.field__label em {
+  color: var(--orange);
+  font-style: normal;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.75rem 0.95rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gold-pale);
+  background: var(--cream);
+  font: inherit;
+  font-size: 0.94rem;
+  color: var(--ink);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+  background: #fff;
+  box-shadow: var(--ring);
+}
+
+.field__error {
+  font-size: 0.8rem;
+  color: #b3261e;
+  font-weight: 500;
+}
+
+/* --- Service checkboxes --- */
+
+.checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.15rem;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.48rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--gold-pale);
+  background: var(--cream);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.check input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.check app-icon {
+  width: 17px;
+  height: 17px;
+  color: var(--orange);
+  flex: none;
+  transition: color 0.18s ease;
+}
+
+.check:hover {
+  border-color: var(--gold);
+}
+
+.check--on {
+  background: linear-gradient(135deg, var(--orange), var(--rust));
+  border-color: transparent;
+  color: #fff;
+}
+
+.check--on app-icon {
+  color: #fff;
+}
+
+/* Keyboard focus ring, since the real input is visually hidden. */
+.check:has(input:focus-visible) {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+
+.form__submit {
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
+.form__note {
+  margin: 0.9rem 0 0;
+  text-align: center;
+  font-size: 0.87rem;
+  color: var(--ink-soft);
+}
+
+.form__note a {
+  font-weight: 600;
+}
+
+/* --- Success banner --- */
+
+.sent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-sm);
+  background: #e8f6ec;
+  border: 1px solid #86ce9d;
+  color: #17603a;
+}
+
+.sent app-icon {
+  width: 21px;
+  height: 21px;
+  flex: none;
+  margin-top: 0.15rem;
+  padding: 3px;
+  border-radius: 50%;
+  background: #1fa855;
+  color: #fff;
+}
+
+.sent strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.sent span {
+  font-size: 0.87rem;
+}
+
+/* ----- Map ---------------------------------------------------------------- */
+
+.map-wrap {
+  display: grid;
+  gap: 1.25rem;
+  position: sticky;
+  top: calc(var(--header-h) + 60px);
+}
+
+.map {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--gold);
+  box-shadow: var(--shadow-sm);
+  line-height: 0;
+}
+
+.map iframe {
+  width: 100%;
+  height: 260px;
+  border: 0;
+  display: block;
+}
+
+.map__card {
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background: linear-gradient(150deg, var(--brown-deep), var(--brown));
+  color: var(--on-dark-soft);
+  border: 1px solid var(--gold);
+}
+
+.map__card h3 {
+  color: var(--gold-light);
+  font-size: 1.22rem;
+  margin-bottom: 0.1rem;
+}
+
+.map__sub {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 1.15rem;
+}
+
+.map__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  line-height: 1.62;
+  margin: 0 0 0.8rem;
+  color: var(--on-dark-soft);
+}
+
+.map__row app-icon {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  margin-top: 0.2rem;
+  color: var(--orange-soft);
+}
+
+.map__row--link:hover {
+  color: var(--gold-light);
+}
+
+.map__btn {
+  width: 100%;
+  margin-top: 0.6rem;
+}
+
+/* ----- Responsive --------------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .map-wrap {
+    position: static;
+  }
+}

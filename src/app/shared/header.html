@@ -1,0 +1,80 @@
+<!-- Top strip: address + phones, mirrors the contact block on the card -->
+<div class="topbar">
+  <div class="shell topbar__inner">
+    <span class="topbar__item">
+      <app-icon name="location" class="ic" />
+      {{ business.address.line1 }}, {{ business.address.city }} - {{ business.address.pincode }}
+    </span>
+    <span class="topbar__sep" aria-hidden="true"></span>
+    <span class="topbar__item topbar__item--hours">
+      <app-icon name="clock" class="ic" />
+      {{ business.hours }}
+    </span>
+    <span class="topbar__phones">
+      @for (phone of business.phones; track phone.dial) {
+        <a [href]="'tel:' + phone.dial" class="topbar__phone">
+          <app-icon name="phone" class="ic" />
+          {{ phone.label }}
+        </a>
+      }
+    </span>
+  </div>
+</div>
+
+<header class="bar" [class.bar--scrolled]="scrolled()">
+  <div class="shell bar__inner">
+    <a routerLink="/" class="brand" (click)="closeMenu()" aria-label="Kasi Suba Muhurtham — home">
+      <span class="brand__mark" aria-hidden="true">
+        <app-icon name="ganesha" />
+      </span>
+      <span class="brand__text">
+        <span class="brand__name">
+          <em>Kasi</em> Suba Muhurtham
+        </span>
+        <span class="brand__sub">A to Z Event Management</span>
+      </span>
+    </a>
+
+    <button
+      class="burger"
+      type="button"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="primary-nav"
+      [attr.aria-label]="menuOpen() ? 'Close menu' : 'Open menu'"
+    >
+      <app-icon [name]="menuOpen() ? 'close' : 'menu'" />
+    </button>
+
+    <nav id="primary-nav" class="nav" [class.nav--open]="menuOpen()" aria-label="Primary">
+      <ul class="nav__list">
+        @for (link of links; track link.path) {
+          <li>
+            <a
+              [routerLink]="link.path"
+              routerLinkActive="is-active"
+              [routerLinkActiveOptions]="{ exact: link.exact }"
+              (click)="closeMenu()"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+
+      <a
+        routerLink="/contact"
+        class="btn btn--primary nav__cta"
+        (click)="closeMenu()"
+      >
+        Enquire Now
+        <app-icon name="arrow-right" />
+      </a>
+
+      <a [href]="'tel:' + primaryPhone.dial" class="nav__call">
+        <app-icon name="phone" />
+        {{ primaryPhone.label }}
+      </a>
+    </nav>
+  </div>
+</header>
