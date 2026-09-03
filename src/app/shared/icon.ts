@@ -221,15 +221,17 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
         @case ('star') {
           <path d="m12 3.5 2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8L3.5 9.7l5.9-.9z" />
         }
-        @case ('ganesha') {
-          <!-- stylised Ganesha silhouette used as a brand mark -->
-          <path d="M12 4.2a4.3 4.3 0 0 1 4.3 4.3c0 1.2-.5 2-.5 2.9 0 1.4 1.2 2 1.2 3.4A3.6 3.6 0 0 1 13.4 18h-.6" />
-          <path d="M12 4.2A4.3 4.3 0 0 0 7.7 8.5c0 1.2.5 2 .5 2.9 0 1.4-1.2 2-1.2 3.4A3.6 3.6 0 0 0 10.6 18h.6" />
-          <path d="M11.2 18c0 1.3.4 2.4 1.6 3" />
-          <path d="M16.3 8.5c1.6 0 2.7 1 2.7 2.4S17.9 13 16.6 13" />
-          <path d="M7.7 8.5C6.1 8.5 5 9.5 5 10.9S6.1 13 7.4 13" />
-          <circle cx="10.2" cy="8.6" r="0.7" />
-          <circle cx="13.8" cy="8.6" r="0.7" />
+        @case ('monogram') {
+          <!-- serif "K" brand mark, matching the favicon -->
+          <g stroke-linecap="butt" transform="translate(12 12) scale(1.15) translate(-12 -12)">
+            <path d="M8.1 4.5v15" stroke-width="3.2" />
+            <path d="M5.3 5.2h5.6" stroke-width="1.4" />
+            <path d="M5.3 18.8h5.6" stroke-width="1.4" />
+            <path d="M9.1 13.2 16.3 5.6" stroke-width="2.8" />
+            <path d="M14.5 5.2h3.9" stroke-width="1.4" />
+            <path d="M10.5 11.2 17.3 18.6" stroke-width="3" />
+            <path d="M15 18.8h3.7" stroke-width="1.5" />
+          </g>
         }
         @default {
           <circle cx="12" cy="12" r="8" />
